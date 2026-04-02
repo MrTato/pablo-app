@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 const liveValue = ref('')
+const activeKey = ref('')
+let activeKeyTimeout: ReturnType<typeof setTimeout> | undefined
 
 const keypadRows = [
   ['7', '8', '9'],
@@ -9,16 +13,58 @@ const keypadRows = [
 ]
 
 function appendValue(token: string) {
+  flashKey(token)
   liveValue.value += token
 }
 
 function clearValue() {
+  flashKey('clear')
   liveValue.value = ''
 }
 
 function backspaceValue() {
+  flashKey('backspace')
   liveValue.value = liveValue.value.slice(0, -1)
 }
+
+function flashKey(token: string) {
+  activeKey.value = token
+
+  if (activeKeyTimeout) {
+    clearTimeout(activeKeyTimeout)
+  }
+
+  activeKeyTimeout = setTimeout(() => {
+    activeKey.value = ''
+  }, 140)
+}
+
+function normalizeNumericInput(value: string) {
+  return value.replace(/[^0-9.]/g, '')
+}
+
+function handleKeydown(event: KeyboardEvent) {
+  if (/^[0-9.]$/.test(event.key)) {
+    flashKey(event.key)
+  }
+
+  if (event.key === 'Backspace') {
+    flashKey('backspace')
+  }
+}
+
+function handleInput(event: Event) {
+  const target = event.target as HTMLTextAreaElement
+  liveValue.value = normalizeNumericInput(target.value)
+}
+
+const hasInvalidNumber = computed(() => {
+  if (!liveValue.value) {
+    return false
+  }
+
+  return !/^\d+(\.\d+)?$/.test(liveValue.value)
+})
 </script>
 
 <template>
@@ -57,14 +103,36 @@ function backspaceValue() {
                     </p>
                   </div>
 
-                  <label class="block">
+                  <label class="relative block">
                     <span class="sr-only">Input value</span>
                     <textarea
                       v-model="liveValue"
                       rows="5"
                       placeholder="Ingrese su salario bruto..."
-                      class="min-h-40 w-full resize-none rounded-[1.2rem] border border-[#244638]/12 bg-[#f2f5ef] px-5 py-5 text-lg leading-8 text-[#18372b] outline-none transition duration-200 placeholder:text-[#7e9388] focus:border-emerald-900/25 focus:bg-white focus:ring-4 focus:ring-emerald-900/8 sm:min-h-44 sm:text-xl lg:min-h-48"
+                      inputmode="decimal"
+                      class="min-h-40 w-full resize-none rounded-[1.2rem] border px-5 py-5 text-lg leading-8 text-[#18372b] outline-none transition duration-200 placeholder:text-[#7e9388] sm:min-h-44 sm:text-xl lg:min-h-48"
+                      :class="hasInvalidNumber
+                        ? 'border-red-400 bg-red-50/80 focus:border-red-500 focus:bg-red-50 focus:ring-4 focus:ring-red-200/80'
+                        : 'border-[#244638]/12 bg-[#f2f5ef] focus:border-emerald-900/25 focus:bg-white focus:ring-4 focus:ring-emerald-900/8'"
+                      @keydown="handleKeydown"
+                      @input="handleInput"
                     />
+
+                    <transition
+                      enter-active-class="transition duration-200 ease-out"
+                      enter-from-class="translate-y-2 opacity-0"
+                      enter-to-class="translate-y-0 opacity-100"
+                      leave-active-class="transition duration-150 ease-in"
+                      leave-from-class="translate-y-0 opacity-100"
+                      leave-to-class="translate-y-1 opacity-0"
+                    >
+                      <span
+                        v-if="hasInvalidNumber"
+                        class="absolute right-4 top-4 rounded-full bg-red-600 px-3 py-1 text-sm font-semibold text-white shadow-lg"
+                      >
+                        numero invalido
+                      </span>
+                    </transition>
                   </label>
 
                   <div class="mt-4 space-y-3">
@@ -77,7 +145,10 @@ function backspaceValue() {
                         v-for="token in row"
                         :key="token"
                         type="button"
-                        class="rounded-[1rem] border border-[#244638]/10 bg-white px-4 py-4 text-xl font-semibold text-[#214233] shadow-[0_8px_20px_rgba(31,64,45,0.06)] transition hover:-translate-y-0.5 hover:bg-[#f8fbf6] active:translate-y-0 sm:py-5"
+                        class="rounded-[1rem] border px-4 py-4 text-xl font-semibold text-[#214233] shadow-[0_8px_20px_rgba(31,64,45,0.06)] transition sm:py-5"
+                        :class="activeKey === token
+                          ? 'border-emerald-700/30 bg-emerald-100 text-[#163128] shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_0_0_3px_rgba(52,211,153,0.18)]'
+                          : 'border-[#244638]/10 bg-white hover:-translate-y-0.5 hover:bg-[#f8fbf6] active:translate-y-0'"
                         @click="appendValue(token)"
                       >
                         {{ token }}
@@ -87,14 +158,20 @@ function backspaceValue() {
                     <div class="grid grid-cols-2 gap-3">
                       <button
                         type="button"
-                        class="rounded-[1rem] border border-[#7c5a22]/15 bg-[#caa56a] px-4 py-4 text-base font-semibold text-[#2f2412] transition hover:bg-[#d5b17a] active:translate-y-0 sm:py-5"
+                        class="rounded-[1rem] border px-4 py-4 text-base font-semibold transition sm:py-5"
+                        :class="activeKey === 'clear'
+                          ? 'border-[#7c5a22]/25 bg-[#d5b17a] text-[#2f2412] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_0_0_3px_rgba(202,165,106,0.2)]'
+                          : 'border-[#7c5a22]/15 bg-[#caa56a] text-[#2f2412] hover:bg-[#d5b17a] active:translate-y-0'"
                         @click="clearValue"
                       >
                         Limpiar
                       </button>
                       <button
                         type="button"
-                        class="rounded-[1rem] border border-[#244638]/10 bg-[#e7eee3] px-4 py-4 text-base font-semibold text-[#214233] transition hover:bg-[#eef4eb] active:translate-y-0 sm:py-5"
+                        class="rounded-[1rem] border px-4 py-4 text-base font-semibold transition sm:py-5"
+                        :class="activeKey === 'backspace'
+                          ? 'border-emerald-700/25 bg-[#eef4eb] text-[#214233] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_0_0_3px_rgba(52,211,153,0.14)]'
+                          : 'border-[#244638]/10 bg-[#e7eee3] text-[#214233] hover:bg-[#eef4eb] active:translate-y-0'"
                         @click="backspaceValue"
                       >
                         Borrar
