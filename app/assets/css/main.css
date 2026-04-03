@@ -37,6 +37,98 @@
   --font-display: "Paloseco", sans-serif;
 }
 
+[data-theme="golden"] {
+  --color-shell-text: #38260a;
+  --color-shell-border: rgba(141, 104, 22, 0.14);
+  --color-shell-shadow: rgba(99, 71, 12, 0.12);
+  --color-page-mid: #fffdf8;
+  --color-page-bottom: #fbf4e2;
+  --color-backdrop-radial: rgba(232, 182, 49, 0.1);
+  --color-grid-line: rgba(111, 78, 12, 0.03);
+  --color-grid-line-alt: rgba(111, 78, 12, 0.025);
+  --color-hero-start: #f1c33b;
+  --color-hero-end: #dca41c;
+  --color-hero-border: rgba(214, 161, 26, 0.2);
+  --color-hero-text: #4d3207;
+  --color-hero-label: rgba(123, 82, 8, 0.85);
+  --color-title: #3f2905;
+  --color-hero-body: rgba(95, 63, 9, 0.88);
+  --color-panel-border: rgba(141, 104, 22, 0.12);
+  --color-panel-bg: #fffdf8;
+  --color-panel-bg-alt: #fff9ed;
+  --color-label: #936d1b;
+  --color-subtext: #8a6a28;
+  --color-input-border: rgba(184, 137, 31, 0.16);
+  --color-input-focus-border: rgba(232, 182, 49, 0.5);
+  --color-input-focus-ring: rgba(232, 182, 49, 0.18);
+  --color-placeholder: #b28a33;
+  --color-display-border: rgba(141, 104, 22, 0.1);
+  --color-display-empty: #7b5208;
+  --color-key-text: #4b350d;
+  --color-key-border: rgba(141, 104, 22, 0.1);
+  --color-key-hover-bg: #fff7e2;
+  --color-key-active-border: rgba(211, 157, 27, 0.35);
+  --color-key-active-bg: #f7df9a;
+  --color-key-active-ring: rgba(232, 182, 49, 0.22);
+  --color-clear-idle-border: rgba(184, 137, 31, 0.18);
+  --color-clear-idle-bg: #e8b631;
+  --color-clear-idle-hover: #efc44d;
+  --color-clear-active-border: rgba(200, 145, 18, 0.28);
+  --color-clear-active-bg: #efcc6a;
+  --color-backspace-idle-border: rgba(141, 104, 22, 0.12);
+  --color-backspace-idle-bg: #f8f0d8;
+  --color-backspace-idle-hover: #f4e3b3;
+  --color-backspace-active-border: rgba(200, 145, 18, 0.22);
+  --color-backspace-active-bg: #f8e8b7;
+  --color-picker-label: rgba(95, 63, 9, 0.72);
+}
+
+[data-theme="ocean"] {
+  --color-shell-text: #14314a;
+  --color-shell-border: rgba(24, 69, 104, 0.16);
+  --color-shell-shadow: rgba(14, 49, 74, 0.14);
+  --color-page-mid: #f2f8fb;
+  --color-page-bottom: #dbeaf2;
+  --color-backdrop-radial: rgba(45, 113, 163, 0.15);
+  --color-grid-line: rgba(17, 62, 95, 0.04);
+  --color-grid-line-alt: rgba(17, 62, 95, 0.03);
+  --color-hero-start: #174e73;
+  --color-hero-end: #0d2f4a;
+  --color-hero-border: rgba(85, 154, 201, 0.18);
+  --color-hero-text: #eef8ff;
+  --color-hero-label: rgba(196, 231, 255, 0.82);
+  --color-title: #ffffff;
+  --color-hero-body: rgba(224, 244, 255, 0.9);
+  --color-panel-border: rgba(24, 69, 104, 0.12);
+  --color-panel-bg: #f8fcfe;
+  --color-panel-bg-alt: #eef6fb;
+  --color-label: #2c6a96;
+  --color-subtext: #547996;
+  --color-input-border: rgba(44, 106, 150, 0.16);
+  --color-input-focus-border: rgba(35, 118, 176, 0.5);
+  --color-input-focus-ring: rgba(45, 113, 163, 0.16);
+  --color-placeholder: #6d92ae;
+  --color-display-border: rgba(24, 69, 104, 0.1);
+  --color-display-empty: #346383;
+  --color-key-text: #173852;
+  --color-key-border: rgba(24, 69, 104, 0.1);
+  --color-key-hover-bg: #edf6fb;
+  --color-key-active-border: rgba(28, 113, 173, 0.34);
+  --color-key-active-bg: #cfe7f6;
+  --color-key-active-ring: rgba(45, 113, 163, 0.2);
+  --color-clear-idle-border: rgba(32, 105, 160, 0.2);
+  --color-clear-idle-bg: #2d719f;
+  --color-clear-idle-hover: #3981b3;
+  --color-clear-active-border: rgba(32, 105, 160, 0.28);
+  --color-clear-active-bg: #69a9d1;
+  --color-backspace-idle-border: rgba(24, 69, 104, 0.12);
+  --color-backspace-idle-bg: #e4eef5;
+  --color-backspace-idle-hover: #d5e5ef;
+  --color-backspace-active-border: rgba(32, 105, 160, 0.2);
+  --color-backspace-active-bg: #d4e6f3;
+  --color-picker-label: rgba(20, 49, 74, 0.72);
+}
+
 html,
 body,
 #__nuxt {

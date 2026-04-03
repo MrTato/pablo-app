@@ -46,6 +46,6 @@ describe('SalaryKeypad', () => {
     })
 
     const clearButton = wrapper.findAll('button').at(-2)
-    expect(clearButton.attributes('class')).toContain('bg-[#efcc6a]')
+    expect(clearButton.attributes('class')).toContain('bg-[var(--color-clear-active-bg)]')
   })
 })
