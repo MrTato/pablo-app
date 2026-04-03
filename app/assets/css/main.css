@@ -37,7 +37,55 @@
   --font-display: "Paloseco", sans-serif;
 }
 
+[data-theme="gray"] {
+  --color-picker-swatch: #8f8f97;
+  --color-shell-text: #2c2c30;
+  --color-shell-border: rgba(96, 96, 106, 0.14);
+  --color-shell-shadow: rgba(36, 36, 41, 0.12);
+  --color-page-mid: #fafafa;
+  --color-page-bottom: #ececef;
+  --color-backdrop-radial: rgba(130, 130, 145, 0.12);
+  --color-grid-line: rgba(78, 78, 88, 0.035);
+  --color-grid-line-alt: rgba(78, 78, 88, 0.025);
+  --color-hero-start: #a5a5ad;
+  --color-hero-end: #7d7d86;
+  --color-hero-border: rgba(111, 111, 121, 0.2);
+  --color-hero-text: #ffffff;
+  --color-hero-label: rgba(245, 245, 247, 0.82);
+  --color-title: #ffffff;
+  --color-hero-body: rgba(245, 245, 247, 0.9);
+  --color-panel-border: rgba(96, 96, 106, 0.12);
+  --color-panel-bg: #fbfbfc;
+  --color-panel-bg-alt: #f4f4f6;
+  --color-label: #6f6f79;
+  --color-subtext: #7d7d86;
+  --color-input-border: rgba(111, 111, 121, 0.16);
+  --color-input-focus-border: rgba(125, 125, 134, 0.44);
+  --color-input-focus-ring: rgba(125, 125, 134, 0.16);
+  --color-placeholder: #9b9ba3;
+  --color-display-border: rgba(96, 96, 106, 0.1);
+  --color-display-empty: #6d6d76;
+  --color-key-text: #37373c;
+  --color-key-border: rgba(96, 96, 106, 0.1);
+  --color-key-hover-bg: #f1f1f4;
+  --color-key-active-border: rgba(125, 125, 134, 0.3);
+  --color-key-active-bg: #dfdfe5;
+  --color-key-active-ring: rgba(125, 125, 134, 0.18);
+  --color-clear-idle-border: rgba(111, 111, 121, 0.18);
+  --color-clear-idle-bg: #8f8f97;
+  --color-clear-idle-hover: #9a9aa2;
+  --color-clear-active-border: rgba(111, 111, 121, 0.26);
+  --color-clear-active-bg: #b3b3bb;
+  --color-backspace-idle-border: rgba(96, 96, 106, 0.12);
+  --color-backspace-idle-bg: #efeff2;
+  --color-backspace-idle-hover: #e4e4e8;
+  --color-backspace-active-border: rgba(111, 111, 121, 0.2);
+  --color-backspace-active-bg: #dcdce2;
+  --color-picker-label: rgba(44, 44, 48, 0.72);
+}
+
 [data-theme="golden"] {
+  --color-picker-swatch: #e8b631;
   --color-shell-text: #38260a;
   --color-shell-border: rgba(141, 104, 22, 0.14);
   --color-shell-shadow: rgba(99, 71, 12, 0.12);
@@ -84,6 +132,7 @@
 }
 
 [data-theme="ocean"] {
+  --color-picker-swatch: #174e73;
   --color-shell-text: #14314a;
   --color-shell-border: rgba(24, 69, 104, 0.16);
   --color-shell-shadow: rgba(14, 49, 74, 0.14);
@@ -127,6 +176,53 @@
   --color-backspace-active-border: rgba(32, 105, 160, 0.2);
   --color-backspace-active-bg: #d4e6f3;
   --color-picker-label: rgba(20, 49, 74, 0.72);
+}
+
+[data-theme="ledger"] {
+  --color-picker-swatch: #1f5b3a;
+  --color-shell-text: #183426;
+  --color-shell-border: rgba(31, 91, 58, 0.16);
+  --color-shell-shadow: rgba(24, 52, 38, 0.14);
+  --color-page-mid: #f3f8f4;
+  --color-page-bottom: #ddebe0;
+  --color-backdrop-radial: rgba(48, 122, 75, 0.14);
+  --color-grid-line: rgba(26, 73, 47, 0.04);
+  --color-grid-line-alt: rgba(26, 73, 47, 0.03);
+  --color-hero-start: #2d6c49;
+  --color-hero-end: #183f2b;
+  --color-hero-border: rgba(88, 150, 111, 0.18);
+  --color-hero-text: #f2fbf5;
+  --color-hero-label: rgba(205, 237, 216, 0.84);
+  --color-title: #ffffff;
+  --color-hero-body: rgba(228, 247, 234, 0.9);
+  --color-panel-border: rgba(31, 91, 58, 0.12);
+  --color-panel-bg: #f9fcf9;
+  --color-panel-bg-alt: #eef6ef;
+  --color-label: #2f724d;
+  --color-subtext: #64836d;
+  --color-input-border: rgba(47, 114, 77, 0.16);
+  --color-input-focus-border: rgba(45, 122, 78, 0.48);
+  --color-input-focus-ring: rgba(45, 122, 78, 0.15);
+  --color-placeholder: #789583;
+  --color-display-border: rgba(31, 91, 58, 0.1);
+  --color-display-empty: #416951;
+  --color-key-text: #1d4530;
+  --color-key-border: rgba(31, 91, 58, 0.1);
+  --color-key-hover-bg: #edf6ef;
+  --color-key-active-border: rgba(45, 122, 78, 0.3);
+  --color-key-active-bg: #d7ebdd;
+  --color-key-active-ring: rgba(45, 122, 78, 0.18);
+  --color-clear-idle-border: rgba(45, 122, 78, 0.18);
+  --color-clear-idle-bg: #2d6c49;
+  --color-clear-idle-hover: #397d56;
+  --color-clear-active-border: rgba(45, 122, 78, 0.28);
+  --color-clear-active-bg: #6da582;
+  --color-backspace-idle-border: rgba(31, 91, 58, 0.12);
+  --color-backspace-idle-bg: #e4efe7;
+  --color-backspace-idle-hover: #d8e7dd;
+  --color-backspace-active-border: rgba(45, 122, 78, 0.2);
+  --color-backspace-active-bg: #d2e5d8;
+  --color-picker-label: rgba(24, 52, 38, 0.72);
 }
 
 html,

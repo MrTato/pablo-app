@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 type ThemeOption = {
   id: string
@@ -8,22 +8,37 @@ type ThemeOption = {
 
 const themes: ThemeOption[] = [
   {
+    id: 'gray',
+    swatch: '#8f8f97'
+  },
+  {
     id: 'golden',
     swatch: '#e8b631'
   },
   {
     id: 'ocean',
     swatch: '#174e73'
+  },
+  {
+    id: 'ledger',
+    swatch: '#1f5b3a'
   }
 ]
 
-const selectedTheme = useState('app-theme', () => themes[0].id)
+const defaultTheme = 'gray'
+const selectedTheme = useState('app-theme', () => {
+  if (import.meta.client) {
+    const documentTheme = document.documentElement.getAttribute('data-theme')
+
+    if (documentTheme && themes.some(theme => theme.id === documentTheme)) {
+      return documentTheme
+    }
+  }
+
+  return defaultTheme
+})
 const isThemeMenuOpen = ref(false)
 const pickerRef = ref<HTMLElement | null>(null)
-
-const currentTheme = computed(() =>
-  themes.find(theme => theme.id === selectedTheme.value) ?? themes[0]
-)
 
 function selectTheme(themeId: string) {
   selectedTheme.value = themeId
@@ -42,10 +57,10 @@ function handleDocumentClick(event: MouseEvent) {
 }
 
 onMounted(() => {
-  const storedTheme = window.localStorage.getItem('app-theme')
+  const documentTheme = document.documentElement.getAttribute('data-theme')
 
-  if (storedTheme && themes.some(theme => theme.id === storedTheme)) {
-    selectedTheme.value = storedTheme
+  if (documentTheme && themes.some(theme => theme.id === documentTheme)) {
+    selectedTheme.value = documentTheme
   }
 
   document.addEventListener('click', handleDocumentClick)
@@ -56,15 +71,17 @@ onBeforeUnmount(() => {
 })
 
 watch(selectedTheme, (value) => {
+  if (!import.meta.client) {
+    return
+  }
+
+  document.documentElement.setAttribute('data-theme', value)
   window.localStorage.setItem('app-theme', value)
 })
 </script>
 
 <template>
-  <div
-    :data-theme="selectedTheme"
-    class="min-h-screen overflow-hidden bg-white text-[color:var(--color-shell-text)]"
-  >
+  <div class="min-h-screen overflow-hidden bg-white text-[color:var(--color-shell-text)]">
     <div class="relative isolate flex min-h-screen items-center justify-center px-4 py-6 sm:px-6 sm:py-10 lg:px-10 lg:py-14">
       <div class="absolute inset-0 [background-image:radial-gradient(circle_at_top_left,var(--color-backdrop-radial),transparent_26%),linear-gradient(180deg,_#ffffff_0%,var(--color-page-mid)_42%,var(--color-page-bottom)_100%)]" />
       <div class="absolute inset-0 opacity-18 [background-image:linear-gradient(var(--color-grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--color-grid-line-alt)_1px,transparent_1px)] [background-size:48px_48px]" />
@@ -79,7 +96,7 @@ watch(selectedTheme, (value) => {
             class="h-8 w-8 rounded-full border border-white/80 shadow-[0_10px_24px_rgba(48,34,8,0.14)] sm:h-9 sm:w-9"
             aria-label="Seleccionar color"
             :aria-expanded="isThemeMenuOpen"
-            :style="{ backgroundColor: currentTheme.swatch }"
+            style="background-color: var(--color-picker-swatch);"
             @click="isThemeMenuOpen = !isThemeMenuOpen"
           />
 
