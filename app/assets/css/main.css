@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Paloseco";
+  src: url("../fonts/Paloseco-Light.woff") format("woff");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paloseco";
+  src: url("../fonts/Paloseco-LightItalic.woff") format("woff");
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paloseco";
+  src: url("../fonts/Paloseco-Medium.woff") format("woff");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paloseco";
+  src: url("../fonts/Paloseco-MediumItalic.woff") format("woff");
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --font-app: Arial, sans-serif;
+  --font-display: "Paloseco", sans-serif;
+}
+
+html,
+body,
+#__nuxt {
+  font-family: var(--font-app);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.font-paloseco {
+  font-family: var(--font-display);
+}
