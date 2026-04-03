@@ -40,7 +40,7 @@ function onKeydown(event: KeyboardEvent) {
         class="min-h-40 w-full resize-none rounded-[1.2rem] border px-5 py-5 text-lg leading-8 text-[color:var(--color-shell-text)] outline-none transition duration-200 placeholder:text-[color:var(--color-placeholder)] sm:min-h-44 sm:text-xl lg:min-h-48 [font-family:Arial,sans-serif]"
         :class="hasInvalidNumber
           ? 'border-red-400 bg-red-50/80 focus:border-red-500 focus:bg-red-50 focus:ring-4 focus:ring-red-200/80'
-          : 'border-[color:var(--color-input-border)] bg-white focus:border-[color:var(--color-input-focus-border)] focus:bg-white focus:ring-4 focus:ring-[color:var(--color-input-focus-ring)]'"
+          : 'border-[color:var(--color-input-border)] bg-[var(--color-control-bg)] focus:border-[color:var(--color-input-focus-border)] focus:bg-[var(--color-control-bg)] focus:ring-4 focus:ring-[color:var(--color-input-focus-ring)]'"
         @keydown="onKeydown"
         @input="onInput"
       />

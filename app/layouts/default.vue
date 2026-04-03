@@ -22,6 +22,14 @@ const themes: ThemeOption[] = [
   {
     id: 'ledger',
     swatch: '#1f5b3a'
+  },
+  {
+    id: 'barbie',
+    swatch: '#e0218a'
+  },
+  {
+    id: 'noir',
+    swatch: '#0d0d0f'
   }
 ]
 
@@ -81,9 +89,9 @@ watch(selectedTheme, (value) => {
 </script>
 
 <template>
-  <div class="min-h-screen overflow-hidden bg-white text-[color:var(--color-shell-text)]">
+  <div class="min-h-screen overflow-hidden bg-[var(--color-shell-base)] text-[color:var(--color-shell-text)]">
     <div class="relative isolate flex min-h-screen items-center justify-center px-4 py-6 sm:px-6 sm:py-10 lg:px-10 lg:py-14">
-      <div class="absolute inset-0 [background-image:radial-gradient(circle_at_top_left,var(--color-backdrop-radial),transparent_26%),linear-gradient(180deg,_#ffffff_0%,var(--color-page-mid)_42%,var(--color-page-bottom)_100%)]" />
+      <div class="absolute inset-0 [background-image:radial-gradient(circle_at_top_left,var(--color-backdrop-radial),transparent_26%),linear-gradient(180deg,var(--color-page-top)_0%,var(--color-page-mid)_42%,var(--color-page-bottom)_100%)]" />
       <div class="absolute inset-0 opacity-18 [background-image:linear-gradient(var(--color-grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--color-grid-line-alt)_1px,transparent_1px)] [background-size:48px_48px]" />
 
       <div
@@ -117,7 +125,7 @@ watch(selectedTheme, (value) => {
         </div>
       </div>
 
-      <main class="relative w-full max-w-7xl overflow-hidden rounded-[2rem] border border-[color:var(--color-shell-border)] bg-white/96 shadow-[0_24px_90px_var(--color-shell-shadow)]">
+      <main class="relative w-full max-w-7xl overflow-hidden rounded-[2rem] border border-[color:var(--color-shell-border)] bg-[color:var(--color-shell-surface)] shadow-[0_24px_90px_var(--color-shell-shadow)]">
         <slot />
       </main>
     </div>

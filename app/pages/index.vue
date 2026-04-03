@@ -71,7 +71,7 @@ const hasInvalidNumber = computed(() => {
     <SalaryHero />
 
     <section class="px-4 py-5 sm:px-6 sm:py-6 lg:px-10 lg:py-8 xl:px-12">
-      <div class="rounded-[1.6rem] border border-[color:var(--color-shell-border)] bg-white p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)] sm:p-4">
+      <div class="rounded-[1.6rem] border border-[color:var(--color-shell-border)] bg-[var(--color-shell-base)] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:p-4">
         <div class="grid gap-4 lg:grid-cols-2">
           <SalaryInputPanel
             :model-value="liveValue"
